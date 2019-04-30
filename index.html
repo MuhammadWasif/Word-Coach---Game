@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Word Coach</title>
+
+  </head>
+  <body>
+    <div class="card">
+      <div class="header">
+        <p class="title">Word Coach</p>
+        <p class="score">Score: 00</p>
+      </div>
+      <div class="main-content">
+          <h2 id="question">Which word is simillar to power?</h2>
+          <div class="btn-group">
+            <button id="btn-1"  onclick="checkAns(event)">Correct</button>
+            <button id="btn-2"  onclick="checkAns(event)">Wrong</button>
+            <p class="noq">1/5</p>
+          </div>
+      </div>
+    </div>
+    <script>
+        
+        // Array of objects including questions and answers
+var objects = [
+  {
+    question: "Which word is similar to alert?",
+    correct: "Vigilant",
+    wrong: "Negligent"
+  },
+  {
+    question: "Which word is opposite to available?",
+    correct: "Inconvenient",
+    wrong: "Applicable"
+  },
+  {
+    question: "Which word better describes smooth?",
+    correct: "Continuous",
+    wrong: "Soft"
+  },
+  {
+    question: "Which word is more positive?",
+    correct: "Slim",
+    wrong: "Skinny"
+  },
+  {
+    question: "Which word is negative?",
+    correct: "Furious",
+    wrong: "Angry"
+  },
+  {
+    question: "Which spelling is correct?",
+    correct: "Batch",
+    wrong: "Bach"
+  },
+  {
+    question: "Which is more positive?",
+    correct: "Delicate",
+    wrong: "Fair"
+  },
+  {
+    question: "Which word better defines programmer?",
+    correct: "A computer geek",
+    wrong: "A mad person"
+  },
+  {
+    question: "Which word better describes confidence?",
+    correct: "Certainity",
+    wrong: "Timidity"
+  },
+  {
+    question: "Which spelling is correct?",
+    correct: "Opportunity",
+    wrong: "Oppurtunity"
+  },
+  {
+    question: "Which is the meaning to murder?",
+    correct: "Bloodshed",
+    wrong: "Demolish"
+  },
+  {
+    question: "Which word better describes example?",
+    correct: "Instance",
+    wrong: "Pattern"
+  }
+];
+// declaring constants and variables
+const question = document.getElementById('question');
+const btn1 = document.getElementById('btn-1');
+const btn2 = document.getElementById('btn-2');
+const score_p = document.querySelector('.score');
+var q = [],
+    n = 0,
+    numberOfQuestions = prompt("How many question do you want?\n(1-11)", 5),
+    scores = 0,
+    randomArr = [];
+// generate an Array of unique random numbers
+while(randomArr.length < numberOfQuestions){
+  var rand = Math.floor(Math.random() * objects.length);
+  if(randomArr.indexOf(rand) == -1){
+    randomArr.push(rand);
+  }
+}
+// This function generates a new question
+const generateQuestionPack = function(){
+// initial states of buttons
+  btn1.className = ''
+  btn2.className = ''
+
+// Show question in card
+  var que = objects[randomArr[n]];
+  q.push(que)
+  question.innerHTML = que.question;
+  var randomPos = Math.random();
+  if(randomPos <= 0.5){
+    btn1.innerHTML = que.correct;
+    btn2.innerHTML = que.wrong;
+  }else{
+    btn2.innerHTML = que.correct;
+    btn1.innerHTML = que.wrong;
+  }
+  document.querySelector('.noq').innerText = n+1 + "/" + numberOfQuestions;
+n++;
+}
+window.onload = generateQuestionPack;
+const checkAns = function(event){
+  if(event.target.textContent == q[q.length-1].correct){
+    event.target.classList.add('correct');
+    scores+=5;
+    score_p.innerHTML = "Scores: " + scores;
+  }else if(event.target.textContent != q[q.length-1].correct){
+    event.target.classList.add('wrong');
+  }
+if(n < numberOfQuestions){
+  setTimeout(generateQuestionPack, 500);
+}else{
+  endGame();
+}
+
+}
+// This function ends the game and shows scores...
+function endGame() {
+  var main_content = document.querySelector(".main-content");
+  main_content.style.opacity = '0';
+  setTimeout(function(){
+    main_content.innerHTML = "<center><p class='inner-scores'>Scores: "+scores+"</p></center>"
+    main_content.style.opacity = '1';
+  }, 1100);
+}
+
+    </script>
+  </body>
+</html>
