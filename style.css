@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway|Montserrat|Muli');
+:root{
+  --success: #00C851;
+  --danger: #ff4444;
+}
+html, body{
+  height: 100%;
+}
+body{
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+.card{
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+  padding: 1px 6px;
+  width: 80%;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+}
+.header{
+  display: flex;
+}
+.score{
+  margin-left: auto;
+  font-family: "Montserrat";
+}
+.title{
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-family: "Raleway";
+}
+.main-content{
+  transition: 1s;
+  transition-delay: 0.5s;
+}
+#question{
+  text-align: center;
+  color: #333;
+  font-size: x-large;
+  font-family: "Muli";
+}
+.btn-group{
+  display: flex;
+  flex-direction: column;
+  padding: 0px 19px 19px 19px;
+}
+#btn-1, #btn-2{
+  margin: 2px;
+  padding: 10px 0px;
+  border: solid 1px skyblue;
+  background: transparent;
+  font-weight: bold;
+  color: skyblue;
+  outline: none;
+}
+.correct{
+  background-color: var(--success) !important;
+  color: white !important;
+  border-color: var(--success) !important;
+}
+.wrong{
+  background-color: var(--danger) !important;
+  color: white !important;
+  border-color: var(--danger) !important;
+}
+.noq{
+  text-align: center;
+  margin-bottom: -5px;
+}
+.inner-scores{
+  text-align: center;
+  font-size: 1.5em;
+  padding: 10px;
+  width: 50%;
+  box-shadow: 1px 2px 1px gray;
+  color: white;
+  font-weight: bolder;
+  font-family: "Montserrat";
+  background: #33b5e5;
+}
